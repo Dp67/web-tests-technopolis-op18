@@ -5,7 +5,7 @@ import core.*;
 import core.MainPage;
 import core.TestBase;
 import core.WrapperForProgressBarVideo.WrapperForProgressBar;
-import core.WrapperForVideos.WrapperForVideos;
+import core.WrapperForVideos.VideoWrapper;
 import model.TestBot;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class TestCase4 extends TestBase {
         new MainPage(driver).clickVideoOnToolbar();
         new VideoPage(driver).clickButtonMyVideo();
         MyVideosPage myVideosPage =new MyVideosPage(driver);
-        List<WrapperForVideos> videos;
+        List<VideoWrapper> videos;
         while(myVideosPage.checkVideosPresent()) {
             videos = new MyVideosPage(driver).getVideos();
             videos.get(0).DeleteVideos();

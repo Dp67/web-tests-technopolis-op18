@@ -17,8 +17,7 @@ public class TestCaseBroadcast_4 extends TestBase {
     public void PreCondition(){
         init();
         new LoginMainPage(driver).doLogin(new TestBot("+79111026260", "2206851qwe"));
-        new MainPage(driver).clickVideoOnToolbar();
-        VideoPage videoPage = new VideoPage(driver);
+        VideoPage videoPage = new MainPage(driver).clickVideoOnToolbar();
         videoPage.clickBroadcastButton();
         videoPage.settingBroadcast();
         videoPage.startPreviewBroadcast();

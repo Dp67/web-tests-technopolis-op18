@@ -2,7 +2,7 @@ package tests;
 
 import core.*;
 import core.WrapperForProgressBarVideo.WrapperForProgressBar;
-import core.WrapperForVideos.WrapperForVideos;
+import core.WrapperForVideos.VideoWrapper;
 import model.TestBot;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class TestCase2 extends TestBase {
         new MainPage(driver).clickVideoOnToolbar();
         new VideoPage(driver).clickButtonMyVideo();
         MyVideosPage myVideosPage =new MyVideosPage(driver);
-        List<WrapperForVideos> videos;
+        List<VideoWrapper> videos;
         while(myVideosPage.checkVideosPresent()) {
             videos = new MyVideosPage(driver).getVideos();
             videos.get(0).DeleteVideos();
@@ -34,7 +34,7 @@ public class TestCase2 extends TestBase {
         wrapperForProgressBars.get(0).stopDowloadVideo();
         wrapperForProgressBars.get(0).resumeDownloadVideo();
         myVideosPage.waitForVideo( 1);
-        List<WrapperForVideos> videos = new MyVideosPage(driver).getVideos();
+        List<VideoWrapper> videos = new MyVideosPage(driver).getVideos();
         videos.get(0).checkDetailsVideoDisplayed();
         driver.navigate().refresh();
         myVideosPage.waitForVideo(1);

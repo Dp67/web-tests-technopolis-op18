@@ -13,13 +13,13 @@ import java.util.List;
  */
 public class VideoTransformer {
 
-    public static List<WrapperForVideos> wrap(List<WebElement> elements, WebDriver driver) {
+    public static List<VideoWrapper> wrap(List<WebElement> elements, WebDriver driver) {
         if (elements.isEmpty()) {
-            return Collections.<WrapperForVideos>emptyList();
+            return Collections.<VideoWrapper>emptyList();
         }
-        List<WrapperForVideos> videos = new ArrayList<WrapperForVideos>();
+        List<VideoWrapper> videos = new ArrayList<VideoWrapper>();
         for (WebElement video : elements) {
-            videos.add(new WrapperForVideos(video, driver));
+            videos.add(new VideoWrapper(video, driver));
         }
         return videos;
     }

@@ -18,8 +18,7 @@ public class TestCaseBroadcast_3 extends TestBase {
 
     public void testChannelCreation(){
         new LoginMainPage(driver).doLogin(new TestBot("+79111026260", "2206851qwe"));
-        new MainPage(driver).clickVideoOnToolbar();
-        VideoPage videoPage = new VideoPage(driver);
+        VideoPage videoPage =new MainPage(driver).clickVideoOnToolbar();
         videoPage.clickButtonMyVideo();
         Assert.assertTrue("Не открывается сабпанель видео", isElementPresent(VideoPage.SUBPANEL_VIDEO));
         videoPage.buttonPreCreateChannalMenuVideo();

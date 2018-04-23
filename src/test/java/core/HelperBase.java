@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -92,5 +93,8 @@ public abstract class HelperBase {
 
     public void moveToElement(WebElement webElement){
         new Actions(driver).moveToElement(webElement).build().perform();
+    }
+    public void waitStalenessOfElement(final WebElement webElement) {
+        new WebDriverWait(driver, 3).until(ExpectedConditions.stalenessOf(webElement));
     }
 }

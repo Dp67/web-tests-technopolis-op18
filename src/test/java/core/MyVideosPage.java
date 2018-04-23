@@ -3,7 +3,7 @@ package core;
 import core.WrapperForProgressBarVideo.ProgressBarTransformer;
 import core.WrapperForProgressBarVideo.WrapperForProgressBar;
 import core.WrapperForVideos.VideoTransformer;
-import core.WrapperForVideos.WrapperForVideos;
+import core.WrapperForVideos.VideoWrapper;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -37,7 +37,7 @@ public class MyVideosPage extends HelperBase {
     }
 
     public void CheckForVideos() {
-        List<WrapperForVideos> videos = new MyVideosPage(driver).getVideos();
+        List<VideoWrapper> videos = new MyVideosPage(driver).getVideos();
         Assert.assertTrue("Нет элементов видео", videos.get(0).checkDetailsVideoDisplayed());
         //for (int n=0;n<=(videos.size()-1);n++) videos.get(n).isDetailsVideoDisplayed();
     }
@@ -61,9 +61,8 @@ public class MyVideosPage extends HelperBase {
         return new DowloadPage(driver);
     }
 
-    public List<WrapperForVideos> getVideos() {
+    public List<VideoWrapper> getVideos() {
         if (isElementPresent(VIDEOS)) {
-            System.out.println("Передаем видео трансформеру");
             return VideoTransformer.wrap(driver.findElements(VIDEOS), driver);
         }
         return Collections.emptyList();

@@ -3,7 +3,7 @@ package tests;
 
 import core.*;
 import core.WrapperForProgressBarVideo.WrapperForProgressBar;
-import core.WrapperForVideos.WrapperForVideos;
+import core.WrapperForVideos.VideoWrapper;
 import model.TestBot;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class TestCase1 extends TestBase {
         new MainPage(driver).clickVideoOnToolbar();
         new VideoPage(driver).clickButtonMyVideo();
         MyVideosPage myVideosPage =new MyVideosPage(driver);
-        List<WrapperForVideos> videos;
+        List<VideoWrapper> videos;
        while(myVideosPage.checkVideosPresent()) {  //Цикл для удаления всех видео на аккаунте
             //  в цикле проверка на то, что на странице присутствуют видео
             videos = new MyVideosPage(driver).getVideos(); // Обновляем враппер-лист
@@ -39,7 +39,7 @@ public class TestCase1 extends TestBase {
         wrapperForProgressBars.get(0).setNameVideo();
         wrapperForProgressBars.get(0).saveChanges();
         myVideosPage.waitForVideo(1);
-        List<WrapperForVideos> videos = new MyVideosPage(driver).getVideos();
+        List<VideoWrapper> videos = new MyVideosPage(driver).getVideos();
         videos.get(0).checkDetailsVideoDisplayed();
         videos.get(0).checkVideoName();
         videos.get(0).checkVideoDuration();

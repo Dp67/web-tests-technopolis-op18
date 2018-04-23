@@ -1,14 +1,20 @@
 package core;
 
+import core.WrapperForVideos.*;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class VideoPage extends HelperBase {
+import java.util.Collections;
+import java.util.List;
+
+public class VideoPage extends Toolbar {
 
     public static final By MENU_SETTING_BROADCAST = By.xpath("//*[@class = 'js-popup-tab js-main-tab']");
     private static final By PREVIEW_BROADCAST = By.xpath(".//*[@class = 'form-actions_yes vl_btn']");
@@ -39,6 +45,12 @@ public class VideoPage extends HelperBase {
     private static final By DOWLOAD_VIDEOS = By.xpath(".//*[contains(@class,'add') and contains(@class,'video')]/*[@class='vl_btn' or contains(@href,'upload')]"); //кнопка загрузить видео
    // private static final By MY_VIDEOS = By.xpath(".//*[text()='Моё видео' and contains(@class,'ellip')]/ancestor::*[contains(@class,'btn')]");
     private static final By INPUT_FOR_VIDEOS = By.xpath(".//input[@type='file' and @name='videos']"); //инпут для загрузки видео
+    public static final By SECTIONS_BLOCK = By.xpath(".//ul[@class='mml_cat_ul']");
+    public static final By SEARCH_VIDEO = By.xpath(".//div[@class='it_w search-input' and @id='vv-search']");
+    public static final By VIDEO_PREVIEW = By.xpath(".//div[contains(@class,'vid-card js-frozen js-watched')]");
+    public static final By WATCHLATER_VIDEO = By.xpath(".//a[@id='vv_btn_watchLater']");
+    // Локаторы Дани
+    public static final By VIDEO_FROZEN = By.xpath(".//div[contains(@class,'vid-card js-frozen js-watched')]"); //локатор для поиска отложенных(замороженных) видео
 
 
     public VideoPage(WebDriver driver) {
@@ -46,6 +58,11 @@ public class VideoPage extends HelperBase {
     }
 
     protected void check() {
+        new WebDriverWait(driver, 10).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return isElementPresent(SECTIONS_BLOCK) && isElementPresent(SEARCH_VIDEO);
+            }
+        });
         Assert.assertTrue("Не отображается меню Видео",
                 explicitWait(ExpectedConditions.visibilityOfElementLocated(MENU_VIDEO), 10, 500));
     }
@@ -62,6 +79,12 @@ public class VideoPage extends HelperBase {
         click(DOWLOAD_VIDEOS);
         return new DowloadPage(driver);
     }
+    //Нажатие на кнопку в левом тулбаре Видео (открывает форму с отложенными видео)
+    public void clickWatchLaterSection() {
+        Assert.assertTrue("Отсутствует кнопка \"Отложенное видео\"", isElementPresent(WATCHLATER_VIDEO));
+        click(WATCHLATER_VIDEO);
+    }
+
     //Инъекция видео
     public void inputVideos(String path) {
         type(path,INPUT_FOR_VIDEOS);
@@ -147,6 +170,35 @@ public class VideoPage extends HelperBase {
         Assert.assertTrue("Кнопка Созданного канала не найдена", isElementPresent(BUTTON_CHANNAL));
         (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(BUTTON_CHANNAL));
         driver.findElement(BUTTON_CHANNAL).click();
+    }
+
+//Данины методы для работы с враппером
+
+    //Проверка с помощью враппера видеозаписей по имени
+    public Boolean checkVideoByName(String videoName, List<VideoWrapper> videoList) {
+        if (videoList.isEmpty()) return false;
+        for (VideoWrapper video:videoList) {
+            if (video.checkVideoNameNotNull().equals(videoName)) return true;
+        }
+        return false;
+    }
+    //Клик на видео по имени из листа видеозаписей
+    public void clickOnVideoByName(String videoName, List<VideoWrapper> videoList) {
+        Assert.assertFalse("Список видео не должен быть пустым", videoList.isEmpty());
+        for (VideoWrapper video:videoList) {
+            if (video.checkVideoNameNotNull().equals(videoName)) {
+                video.getElement().click();
+                break;
+            }
+        }
+    }
+    //Собираем враппер-лист из всех отложенных видео
+    public List<VideoWrapper> getFrozenVideos() {
+        if (isElementVisible(VIDEO_FROZEN)) {
+            List<WebElement> videos = driver.findElements(VIDEO_FROZEN);
+            return VideoTransformer.wrap(videos, driver);
+        }
+        return Collections.emptyList();
     }
 
 }

@@ -21,8 +21,7 @@ public class TestCaseBroadcast_1 extends TestBase {
     @Test
     public void testBroadcastCreation(){
         new LoginMainPage(driver).doLogin(new TestBot("+79111026260", "2206851qwe"));
-        new MainPage(driver).clickVideoOnToolbar();
-        VideoPage videoPage = new VideoPage(driver);
+        VideoPage videoPage = new MainPage(driver).clickVideoOnToolbar();
         videoPage.clickBroadcastButton();
         Assert.assertTrue("Меню настройки трансляции не отображается", isElementPresent(VideoPage.BROADCAST_SETTING));
         videoPage.settingBroadcast();

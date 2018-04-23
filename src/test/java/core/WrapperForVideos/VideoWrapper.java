@@ -1,5 +1,6 @@
 package core.WrapperForVideos;
 
+import com.google.common.base.Preconditions;
 import core.*;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -7,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class WrapperForVideos {
+public class VideoWrapper {
 
     private WebElement element;
     private WebDriver driver;
@@ -17,8 +18,10 @@ public class WrapperForVideos {
     private static final By NAME_VIDEO = By.xpath(".//div[contains(@class,'n_w')]/div[contains(@class,'n')]");
     private static final By DELETE_VIDEO = By.xpath(".//a[contains(@title,'Удалить')]");
     private static final By CONFIRM_DELETE_VIDEO = By.xpath(".//input[contains(@value,'Удалить')]");
+    public static final By VIDEO_NAME = By.xpath(".//div[@class='vid-card_n']"); //почему паблик?
+    private String videoName; //подумать над другой реализацией
 
-    public WrapperForVideos(WebElement element, WebDriver driver) {
+    public VideoWrapper(WebElement element, WebDriver driver) {
         this.driver = driver;
         this.element = element;
     }
@@ -87,10 +90,15 @@ public class WrapperForVideos {
         DataForVideo dataForVideo = DataForVideo.VIEWS;
         Assert.assertTrue("Кол-во просмотров видео не соответствует задуманному!", element.findElement(VIEWS_VIDEO).getText().equals(dataForVideo.getClaim()));
     }
-    public void clickOnVideo() {
-        DataForVideo dataForVideo = DataForVideo.VIEWS;
-        Assert.assertTrue("Кол-во просмотров видео не соответствует задуманному!", element.findElement(VIEWS_VIDEO).getText().equals(dataForVideo.getClaim()));
+    public String checkVideoNameNotNull() {
+        videoName = element.findElement(VIDEO_NAME).getText();
+        Preconditions.checkNotNull(videoName, "Название видео не может быть пустым");
+        return videoName;
     }
+    public WebElement getElement() {
+        return element;
+    }
+
 
 
 }
