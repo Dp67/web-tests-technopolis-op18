@@ -9,9 +9,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Verification extends HelperBase {
-    public static final By CHANNEL = By.xpath("//*[text() = 'Новый канал для тебя' and @class = 'mml_ucard_n_g textWrap']");
-    private VideoPage videoPage = new VideoPage(driver);
 
+    private VideoPage videoPage = new VideoPage(driver);
+    
+    public static final By CHANNEL = By.xpath("//*[text() = 'Новый канал для тебя' and @class = 'mml_ucard_n_g textWrap']");
     public static final By GET_ID_PHOTO_4 = By.xpath("//*[@class = 'slider_img preview-image']");
     public static final By GET_ID_PHOTO_3 = By.xpath("//*[@class = 'vid-card_img__link']/descendant::*[@class = 'vid-card_img']");
     private static final By SLIDER_SUCCESS = By.xpath("//*[@class = 'slider_i_success']");
@@ -22,7 +23,8 @@ public class Verification extends HelperBase {
     public static final By GET_ID_2 = By.xpath("//*[@class = 'js-loader-container clearfix']/descendant::div[1]");
     public static final By GET_ID_PHOTO_1 = By.xpath("//*[@class = 'photo-crop_cnt selectable-card __selected']");
     public static final By GET_ID_PHOTO_2 = By.xpath("//*[@class = 'attach-photo_del attachInput']");
-
+    public static final By MAIN_VIDEO_PAGE = By.xpath("//*[@class = 'jcol-l vl_sctn_h' and text() = 'Ваши видео']");
+    public static final By BROADCAST_VIDGET = By.xpath("//*[@class = 'vid-card_img__link']");
 
     protected void check() {
     }
@@ -56,7 +58,9 @@ public class Verification extends HelperBase {
                 driver.navigate().refresh();
                 videoPage.clickButtonMyVideo();
                 videoPage.ButtonMyLives();
-                Assert.assertTrue("Не отображается виджет созданной трансляции", isElementPresent(By.xpath("//*[@class = 'vid-card_img__link']")));
+                Assert.assertTrue("Не отображается инвизибл",
+                        explicitWait(ExpectedConditions.invisibilityOfElementLocated(MAIN_VIDEO_PAGE), 10, 500));
+                Assert.assertTrue("Не отображается виджет созданной трансляции", isElementPresent(BROADCAST_VIDGET));
                 return isElementVisible(DURATION_RECORD);
             }
         });
