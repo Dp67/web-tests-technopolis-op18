@@ -36,6 +36,10 @@ public class VideoPage extends HelperBase {
     public static final By DELETE_CHANNEL = By.xpath("//*[@class = 'tico_img vl_ic_delete']");
     public static final By DELETE_CHANNEL_ACCEPT = By.xpath("//*[@value = 'Удалить' and @class = 'vl_btn']");
     public static final By DELETE_RECORD_ACCEPT = By.xpath("//*[@value = 'Удалить']");
+    private static final By DOWLOAD_VIDEOS = By.xpath(".//*[contains(@class,'add') and contains(@class,'video')]/*[@class='vl_btn' or contains(@href,'upload')]"); //кнопка загрузить видео
+   // private static final By MY_VIDEOS = By.xpath(".//*[text()='Моё видео' and contains(@class,'ellip')]/ancestor::*[contains(@class,'btn')]");
+    private static final By INPUT_FOR_VIDEOS = By.xpath(".//input[@type='file' and @name='videos']"); //инпут для загрузки видео
+
 
     public VideoPage(WebDriver driver) {
         super(driver);
@@ -47,15 +51,27 @@ public class VideoPage extends HelperBase {
     }
 
     //Нажатие на кнопку "Мои Видео" в левом тулбаре Видео (вызывает список)
-    public void ButtonMyVideo() {
-        Assert.assertTrue("Не открылось окно трансляций", isElementPresent(BUTTON_MYVIDEO));
+    public void clickButtonMyVideo() {
+        Assert.assertTrue("Нет кнопки моё видео", isElementPresent(BUTTON_MYVIDEO));
         driver.findElement(BUTTON_MYVIDEO).click();
+    }
+
+    //Нажатие на кнопку "Загрузить" на верхней панели раздела Видео (вызывает форму загрузки видео)
+    public DowloadPage clickDowloadVideoButton() {
+        //Assert
+        click(DOWLOAD_VIDEOS);
+        return new DowloadPage(driver);
+    }
+    //Инъекция видео
+    public void inputVideos(String path) {
+        type(path,INPUT_FOR_VIDEOS);
     }
 
     //Нажатие на кнопку "Мои Трансляции" в списке кнопки Видео левого тулбара
     public void ButtonMyLives() {
         Assert.assertTrue("Не открылось окно трансляций", isElementPresent(BUTTON_MYLIVES));
         (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(BUTTON_MYLIVES));
+        moveToElement(driver.findElement(BUTTON_MYLIVES));
         driver.findElement(BUTTON_MYLIVES).click();
 
     }
@@ -132,6 +148,7 @@ public class VideoPage extends HelperBase {
         (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(BUTTON_CHANNAL));
         driver.findElement(BUTTON_CHANNAL).click();
     }
+
 }
 
 

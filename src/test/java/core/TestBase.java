@@ -24,7 +24,7 @@ public class TestBase {
     }
 
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Eugene\\Desktop\\chromedriver.exe");
+       // System.setProperty("webdriver.chrome.driver", "C:\\Users\\Eugene\\Desktop\\chromedriver.exe");
         ChromeDriverService driverService = ChromeDriverService.createDefaultService();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("allow-file-access-from-files");

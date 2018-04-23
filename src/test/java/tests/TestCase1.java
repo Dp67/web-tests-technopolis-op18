@@ -1,0 +1,50 @@
+package tests;
+
+
+import core.*;
+import core.WrapperForProgressBarVideo.WrapperForProgressBar;
+import core.WrapperForVideos.WrapperForVideos;
+import model.TestBot;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.List;
+
+public class TestCase1 extends TestBase {
+
+    @Before
+    public void SetUp() throws Exception {
+        init();
+        new LoginMainPage(driver).doLogin(new TestBot("QA18testbot82", "QA18testbot"));
+        new MainPage(driver).clickVideoOnToolbar();
+        new VideoPage(driver).clickButtonMyVideo();
+        MyVideosPage myVideosPage =new MyVideosPage(driver);
+        List<WrapperForVideos> videos;
+       while(myVideosPage.checkVideosPresent()) {  //Цикл для удаления всех видео на аккаунте
+            //  в цикле проверка на то, что на странице присутствуют видео
+            videos = new MyVideosPage(driver).getVideos(); // Обновляем враппер-лист
+            videos.get(0).DeleteVideos(); //удаляем первый элемент
+            myVideosPage.waitForVideo(videos.size() - 1);  //ждем, что кол-во видео стало на одно меньше
+        }
+
+    }
+
+    @Test
+    public void testDownloadVideoFromPc() throws Exception {
+
+        MyVideosPage myVideosPage = new MyVideosPage(driver);
+        DowloadPage dowloadPage = myVideosPage.clickOnDowloadVideo();
+        myVideosPage = dowloadPage.ijection();
+        List<WrapperForProgressBar> wrapperForProgressBars = myVideosPage.getProgressBars();
+        wrapperForProgressBars.get(0).setNameVideo();
+        wrapperForProgressBars.get(0).saveChanges();
+        myVideosPage.waitForVideo(1);
+        List<WrapperForVideos> videos = new MyVideosPage(driver).getVideos();
+        videos.get(0).checkDetailsVideoDisplayed();
+        videos.get(0).checkVideoName();
+        videos.get(0).checkVideoDuration();
+        videos.get(0).checkVideoViews();
+        driver.navigate().refresh();
+        myVideosPage.waitForVideo(1);
+    }
+}

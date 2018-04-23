@@ -6,7 +6,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 public class TestCaseBroadcast_2 extends TestBase{
 
@@ -36,7 +35,7 @@ public class TestCaseBroadcast_2 extends TestBase{
         new LoginMainPage(driver).doLogin(new TestBot("+79111026260", "2206851qwe"));
         new MainPage(driver).clickVideoOnToolbar();
         VideoPage videoPage = new VideoPage(driver);
-        videoPage.ButtonMyVideo();
+        videoPage.clickButtonMyVideo();
         Assert.assertTrue("Не открывается сабпанель видео", isElementPresent(VideoPage.SUBPANEL_VIDEO));
         videoPage.ButtonMyLives();
         Assert.assertTrue("Не открылось окно трансляций", isElementPresent(VideoPage.BROADCAST_LAYER));

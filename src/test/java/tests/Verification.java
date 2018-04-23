@@ -5,11 +5,8 @@ import core.VideoPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import tests.TestCaseBroadcast_1;
 
 public class Verification extends HelperBase {
     public static final By CHANNEL = By.xpath("//*[text() = 'Новый канал для тебя' and @class = 'mml_ucard_n_g textWrap']");
@@ -57,7 +54,7 @@ public class Verification extends HelperBase {
         (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver webDriver) {
                 driver.navigate().refresh();
-                videoPage.ButtonMyVideo();
+                videoPage.clickButtonMyVideo();
                 videoPage.ButtonMyLives();
                 Assert.assertTrue("Не отображается виджет созданной трансляции", isElementPresent(By.xpath("//*[@class = 'vid-card_img__link']")));
                 return isElementVisible(DURATION_RECORD);
