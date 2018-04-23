@@ -25,6 +25,8 @@ public class Verification extends HelperBase {
     public static final By GET_ID_PHOTO_2 = By.xpath("//*[@class = 'attach-photo_del attachInput']");
     public static final By MAIN_VIDEO_PAGE = By.xpath("//*[@class = 'jcol-l vl_sctn_h' and text() = 'Ваши видео']");
     public static final By BROADCAST_VIDGET = By.xpath("//*[@class = 'vid-card_img__link']");
+    public static final By BROADCAST_CHANNEL_IND = By.xpath("//*[@class = 'js-loader-container clearfix ui-sortable']/descendant::div[1]");
+
 
     protected void check() {
     }
