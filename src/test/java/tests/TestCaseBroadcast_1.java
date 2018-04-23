@@ -29,12 +29,10 @@ public class TestCaseBroadcast_1 extends TestBase {
         BroadcastPage broadcastPage = new BroadcastPage(driver);
         id1 = driver.findElement(Verification.GET_ID_1).getAttribute("data-movie-id");
         broadcastPage.StartBroadcast();
-        //Assert.assertTrue("Не отображается счетчик до начала трансляции", isElementPresent(BroadcastPage.COUNTER_BROADCAST));
         Promise promise = new BroadcastPage(driver).restartBroadcast().Error();
         broadcastPage.StopBroadcast();
         Assert.assertTrue("Сообщение об окончании трансляции не отображается", isElementPresent(BroadcastPage.MESSAGE_END_BROADCAST) );
         broadcastPage.closeBroadcastWindow();
-        //Assert.assertTrue("Плеер трансляции не закрылся!", !isElementPresent(BROADCAST_LAYER) );
         new Verification(driver).CheckBroadcastPresence();
         id2 = driver.findElement(Verification.GET_ID_2).getAttribute("data-id");
         new Verification(driver).CheckBroadcastRecord();
