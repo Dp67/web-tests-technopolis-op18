@@ -49,13 +49,14 @@ public class TestCaseBroadcast_4 extends TestBase {
         videoPage.saveSettingBroadcast();
         id1 = driver.findElement(Verification.GET_ID_2).getAttribute("data-id");
         videoPage.buttonChannal();
-        id2 = driver.findElement(By.xpath(("//*[@class = 'js-loader-container clearfix ui-sortable']/descendant::div[1]"))).getAttribute("data-id");
+        id2 = driver.findElement(Verification.BROADCAST_CHANNEL_IND).getAttribute("data-id");
         new Verification(driver).CheckAddRecordToChannel();
     }
 
     @After
     public void tearDown(){
         VideoPage videoPage = new VideoPage(driver);
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(VideoPage.DELETE_CHANNEL));
         driver.findElement(VideoPage.DELETE_CHANNEL).click();
         driver.findElement(VideoPage.DELETE_CHANNEL_ACCEPT).click();
         videoPage.ButtonMyLives();
