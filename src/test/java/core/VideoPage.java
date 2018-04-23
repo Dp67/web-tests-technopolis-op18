@@ -95,8 +95,7 @@ public class VideoPage extends Toolbar {
         Assert.assertTrue("Не открылось окно трансляций", isElementPresent(BUTTON_MYLIVES));
         (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(BUTTON_MYLIVES));
         moveToElement(driver.findElement(BUTTON_MYLIVES));
-        driver.findElement(BUTTON_MYLIVES).click();
-
+        new Actions(driver).click(driver.findElement(BUTTON_MYLIVES)).build().perform();
     }
 
     // нажимаем на кнопку "Эфир"
