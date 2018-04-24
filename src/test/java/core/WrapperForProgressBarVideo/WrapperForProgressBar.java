@@ -1,6 +1,6 @@
 package core.WrapperForProgressBarVideo;
 
-import core.*;
+import core.DataForVideos.DataForVideo;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

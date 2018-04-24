@@ -1,7 +1,7 @@
 package core.WrapperForVideos;
 
 import com.google.common.base.Preconditions;
-import core.*;
+import core.DataForVideos.DataForVideo;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

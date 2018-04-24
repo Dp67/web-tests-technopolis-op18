@@ -1,12 +1,13 @@
 package tests;
 
 import core.*;
+import core.VideoPages.BroadcastPage;
+import core.VideoPages.VideoPage;
 import model.TestBot;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 public class Broadcast_TestCase1 extends TestBase {
 

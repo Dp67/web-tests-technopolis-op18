@@ -1,6 +1,9 @@
 package tests;
 
 import core.*;
+import core.DownloadPages.DowloadPage;
+import core.VideoPages.MyVideosPage;
+import core.VideoPages.VideoPage;
 import core.WrapperForProgressBarVideo.WrapperForProgressBar;
 import core.WrapperForVideos.VideoWrapper;
 import model.TestBot;

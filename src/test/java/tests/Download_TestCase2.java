@@ -1,6 +1,11 @@
 package tests;
 
 import core.*;
+import core.DataForVideos.DataForVideoFromYoutube;
+import core.DownloadPages.DowloadPage;
+import core.DownloadPages.DowloadPageFromSites;
+import core.VideoPages.MyVideosPage;
+import core.VideoPages.VideoPage;
 import core.WrapperForVideos.VideoWrapper;
 import model.TestBot;
 import org.junit.Before;

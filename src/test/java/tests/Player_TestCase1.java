@@ -1,6 +1,11 @@
 package tests;
 
 import core.*;
+import core.FriendsPages.FriendPage;
+import core.FriendsPages.FriendPlaylistPage;
+import core.FriendsPages.FriendVideoPage;
+import core.FriendsPages.FriendsMainPage;
+import core.VideoPages.VideoPlayerPage;
 import model.TestBot;
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,4 +1,7 @@
-package core;
+package core.DownloadPages;
+import core.DataForVideos.DataForVideo;
+import core.HelperBase;
+import core.VideoPages.MyVideosPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;

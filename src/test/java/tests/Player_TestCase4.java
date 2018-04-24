@@ -1,6 +1,8 @@
 package tests;
 
 import core.*;
+import core.VideoPages.VideoPage;
+import core.VideoPages.VideoPlayerPage;
 import model.TestBot;
 import org.junit.Assert;
 import org.junit.Before;

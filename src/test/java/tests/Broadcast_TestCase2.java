@@ -1,6 +1,9 @@
 package tests;
 
 import core.*;
+import core.VideoPages.BroadcastPage;
+import core.VideoPages.BroadcastSkinPage;
+import core.VideoPages.VideoPage;
 import model.TestBot;
 import org.junit.After;
 import org.junit.Assert;
