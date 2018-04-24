@@ -27,6 +27,7 @@ public class WrapperForProgressBar {
     private static final By BTN_CLOSE = By.xpath(".//span[contains(@class,'delete')]/span[contains(@class,'close')]");
     private static final By BTN_RESUME = By.xpath(".//span[contains(@class,'resume')]");
     private static final By BAR_ERROR = By.xpath(".//div[contains(@class,'ellip')and contains(@class,'err') and contains(@class,'progress') ]");
+    private static final By CHANGES_SAVE_INFO = By.xpath(".//div[contains(text(),'Изменения сохранены')]");
 
     public WrapperForProgressBar(WebElement element, WebDriver driver) {
         this.driver = driver;
@@ -70,20 +71,17 @@ public class WrapperForProgressBar {
         Assert.assertTrue("Не найден элемент создания группы", !(driver.findElement(BTN_RESUME).isDisplayed()));
     }
     public void setNameVideo() {
-        DataForVideo dataForVideo=DataForVideo.NAME;
-        type(dataForVideo.getClaim(), INPUT_NAME_VIDEO);
+        type(DataForVideo.NAME.getClaim(), INPUT_NAME_VIDEO);
     }
     public void setNamesVideo(int n) {
-        DataForVideo dataForVideo=DataForVideo.NAME;
-        type(dataForVideo.getClaim()+n, INPUT_NAME_VIDEO);
+        type(DataForVideo.NAME.getClaim()+n, INPUT_NAME_VIDEO);
     }
     public void checkErrorOfDownload() {
-        //DataForVideo dataForVideo=DataForVideo.ERROR;
-       // Assert.assertTrue("Нет сообщения о ошибке!", element.findElement(BAR_ERROR).getText().equals(dataForVideo.getClaim()));
         Assert.assertTrue("Нет сообщения о ошибке!", element.findElement(BAR_ERROR).isDisplayed());
     }
     public void saveChanges() {
         element.findElement(BTN_SAVE).click();
+        Assert.assertTrue("Нет сообщения о сохранении изменений!", element.findElement(CHANGES_SAVE_INFO).isDisplayed());
     }
 
     protected void type(String text, By locator) {

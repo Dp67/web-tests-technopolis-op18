@@ -55,50 +55,43 @@ public class VideoWrapper {
     }
 
 
-
+    //метод удаляющий видео
     public void DeleteVideos() {
         moveToElement(element.findElement(DELETE_VIDEO));
-        System.out.println("Навелся на удаление");
         clickToElement(element.findElement(DELETE_VIDEO));
-        System.out.println("Нажал удалить");
         moveToElement(driver.findElement(CONFIRM_DELETE_VIDEO));
-        System.out.println("Навелся на элемент");
         clickToElement(driver.findElement(CONFIRM_DELETE_VIDEO));
-        System.out.println("Нажал на элемент");
     }
-
-
-
+    //метод наведения на элемент
     public void moveToElement(WebElement webElement) {
         new Actions(driver).moveToElement(webElement).build().perform();
     }
+    //метод кликающий на элемент
     public void clickToElement(WebElement webElement) {
         new Actions(driver).click(webElement).build().perform();
     }
 
+    //Проверка видео по имени
     public void checkVideoName() {
-        DataForVideo dataForVideo = DataForVideo.NAME;
-        System.out.println(element.findElement(NAME_VIDEO).getText());
-        Assert.assertTrue("Имя видео не соответствует задуманному!", element.findElement(NAME_VIDEO).getText().equals(dataForVideo.getClaim()));
+        Assert.assertTrue("Имя видео не соответствует задуманному!", element.findElement(NAME_VIDEO).getText().equals(DataForVideo.NAME.getClaim()));
     }
+    //Проверка видео по длительности
     public void checkVideoDuration() {
-        DataForVideo dataForVideo = DataForVideo.DURATION;
-        System.out.println(element.findElement(DURATION_VIDEO).getText());
-        Assert.assertTrue("Продолжительность видео не соответствует задуманному!", element.findElement(DURATION_VIDEO).getText().equals(dataForVideo.getClaim()));
+        Assert.assertTrue("Продолжительность видео не соответствует задуманному!", element.findElement(DURATION_VIDEO).getText().equals(DataForVideo.DURATION.getClaim()));
     }
-    public void checkVideoViews() {
-        DataForVideo dataForVideo = DataForVideo.VIEWS;
-        Assert.assertTrue("Кол-во просмотров видео не соответствует задуманному!", element.findElement(VIEWS_VIDEO).getText().equals(dataForVideo.getClaim()));
+    //Проверка видео по кол-ву просмотров
+    public void checkVideoViews(String number_of_views) {
+        Assert.assertTrue("Кол-во просмотров видео не соответствует задуманному!", element.findElement(VIEWS_VIDEO).getText().equals(number_of_views));
     }
+    //Проверка по имени
     public String checkVideoNameNotNull() {
         videoName = element.findElement(VIDEO_NAME).getText();
         Preconditions.checkNotNull(videoName, "Название видео не может быть пустым");
         return videoName;
     }
+
     public WebElement getElement() {
         return element;
     }
-
-
 
 }

@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestCaseBroadcast_2 extends TestBase{
+public class Broadcast_TestCase2 extends TestBase{
 
     public static String id1;
     public static String id2;

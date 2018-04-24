@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
-public class TestCaseBroadcast_1 extends TestBase {
+public class Broadcast_TestCase1 extends TestBase {
 
     public static String id1;
     public static String id2;

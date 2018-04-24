@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class WatchLaterRemovingTest extends TestBase {
+public class Player_TestCase4 extends TestBase {
 
     @Before
     public void preCondition() throws Exception {

@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class TestCase4 extends TestBase {
+public class Download_TestCase4 extends TestBase {
 
     @Before
     public void SetUp() throws Exception {

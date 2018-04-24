@@ -5,17 +5,18 @@ import core.*;
 import core.WrapperForProgressBarVideo.WrapperForProgressBar;
 import core.WrapperForVideos.VideoWrapper;
 import model.TestBot;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
-public class TestCase1 extends TestBase {
+public class Download_TestCase1 extends TestBase {
 
     @Before
     public void SetUp() throws Exception {
         init();
-        new LoginMainPage(driver).doLogin(new TestBot("QA18testbot82", "QA18testbot"));
+        new LoginMainPage(driver).doLogin(new TestBot("QA18testbot86", "QA18testbot"));
         new MainPage(driver).clickVideoOnToolbar();
         new VideoPage(driver).clickButtonMyVideo();
         MyVideosPage myVideosPage =new MyVideosPage(driver);
@@ -36,6 +37,7 @@ public class TestCase1 extends TestBase {
         DowloadPage dowloadPage = myVideosPage.clickOnDowloadVideo();
         myVideosPage = dowloadPage.ijection();
         List<WrapperForProgressBar> wrapperForProgressBars = myVideosPage.getProgressBars();
+        Assert.assertTrue("Процесс загрузки должен быть один!", wrapperForProgressBars.size()==1);
         wrapperForProgressBars.get(0).setNameVideo();
         wrapperForProgressBars.get(0).saveChanges();
         myVideosPage.waitForVideo(1);
@@ -43,7 +45,7 @@ public class TestCase1 extends TestBase {
         videos.get(0).checkDetailsVideoDisplayed();
         videos.get(0).checkVideoName();
         videos.get(0).checkVideoDuration();
-        videos.get(0).checkVideoViews();
+        videos.get(0).checkVideoViews("0");
         driver.navigate().refresh();
         myVideosPage.waitForVideo(1);
     }

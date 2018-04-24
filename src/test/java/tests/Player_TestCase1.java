@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 
-public class LikeTest extends TestBase {
+public class Player_TestCase1 extends TestBase {
 
     @Before
     public void preCondition() throws Exception {

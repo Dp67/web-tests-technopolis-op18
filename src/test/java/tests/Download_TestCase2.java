@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class TestCase3 extends TestBase {
+public class Download_TestCase2 extends TestBase {
 
     @Before
     public void SetUp() throws Exception {
@@ -29,8 +29,7 @@ public class TestCase3 extends TestBase {
 
         DowloadPage dowloadPage = new VideoPage(driver).clickDowloadVideoButton();
         DowloadPageFromSites dowloadPageFromSites = dowloadPage.ClickToDowloadingFromSites();
-        DataForVideoFromYoutube dataForVideoFromYoutube = DataForVideoFromYoutube.URL;
-        dowloadPageFromSites.putVideoFromSite(dataForVideoFromYoutube.getClaim());
+        dowloadPageFromSites.putVideoFromSite(DataForVideoFromYoutube.URL.getClaim());
         dowloadPageFromSites.clickBtnAddVideo();
         MyVideosPage myVideosPage = new MyVideosPage(driver);
         myVideosPage.waitForVideo( 1);

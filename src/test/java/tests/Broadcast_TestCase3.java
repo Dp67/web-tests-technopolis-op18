@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestCaseBroadcast_3 extends TestBase {
+public class Broadcast_TestCase3 extends TestBase {
 
     @Before
     public void PreCondition(){

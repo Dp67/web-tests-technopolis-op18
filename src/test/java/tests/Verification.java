@@ -38,8 +38,8 @@ public class Verification extends HelperBase {
 
     //Проверка превью фотографии
     public void CheckBroadcastPicturePreview() {
-        TestCaseBroadcast_2.id1 = "PHOTOODKL_" + TestCaseBroadcast_2.id1;
-        if (TestCaseBroadcast_2.id2.equals(TestCaseBroadcast_2.id1)) {
+        Broadcast_TestCase2.id1 = "PHOTOODKL_" + Broadcast_TestCase2.id1;
+        if (Broadcast_TestCase2.id2.equals(Broadcast_TestCase2.id1)) {
             System.out.println("Превью фотографии совпадает с выбранной");
         } else {
             Assert.fail("Фотография не выбранная");
@@ -47,7 +47,7 @@ public class Verification extends HelperBase {
     }
     //Проверка 2
     public void CheckBroadcastPictureSkin(){
-        if (TestCaseBroadcast_2.id2.substring(65).equals(TestCaseBroadcast_2.id1.substring(65))) {
+        if (Broadcast_TestCase2.id2.substring(65).equals(Broadcast_TestCase2.id1.substring(65))) {
             System.out.println("Обложка трансляции совпадает с выбранной");
         } else {
             Assert.fail("Фотография не выбранная");
@@ -70,7 +70,7 @@ public class Verification extends HelperBase {
     }
     // Проверка id
     public void CheckBroadcastRecord(){
-        if(TestCaseBroadcast_1.id1.equals(TestCaseBroadcast_1.id2)){
+        if(Broadcast_TestCase1.id1.equals(Broadcast_TestCase1.id2)){
             System.out.println("Трансляция была осуществлена");
         }
         else{
@@ -78,7 +78,7 @@ public class Verification extends HelperBase {
         }
     }
     public void CheckAddRecordToChannel(){
-        if(TestCaseBroadcast_4.id1.equals(TestCaseBroadcast_4.id2)){
+        if(Broadcast_TestCase4.id1.equals(Broadcast_TestCase4.id2)){
             System.out.println("Добавление былы осуществлено");
         }
         else{

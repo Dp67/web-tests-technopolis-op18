@@ -1,12 +1,14 @@
 package tests;
 
+
 import core.*;
 import model.TestBot;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
 
-public class WatchLaterTest extends TestBase {
+public class Player_TestCase3 extends TestBase {
 
     @Before
     public void preCondition() throws Exception {
@@ -19,15 +21,14 @@ public class WatchLaterTest extends TestBase {
     }
 
     @Test
-    public void watchLaterTest() throws Exception {
+    public void nextVideoTest() throws Exception {
         VideoPlayerPage videoPlayerPage = new VideoPlayerPage(driver);
-        videoPlayerPage.clickWatchLater();
-        String videoName = videoPlayerPage.getVideoName();
-        videoPlayerPage.closeVideo();
-        VideoPage videoPage = new FriendVideoPage(driver).clickVideoOnToolbar();
-        videoPage.clickButtonMyVideo();
-        videoPage.clickWatchLaterSection();
-        String watchLaterVideoName = videoPage.getFrozenVideos().get(0).checkVideoNameNotNull();
-        Assert.assertEquals("Видео отсутствует в отложенных", videoName, watchLaterVideoName);
+        String nextVideoName = videoPlayerPage.getNextVideoName();
+        final WebElement timer = driver.findElement(videoPlayerPage.TIMER);
+        videoPlayerPage.clickNextVideo();
+        videoPlayerPage.waitStalenessOfElement(timer);
+        VideoPlayerPage nextVideoPlayerPage = new VideoPlayerPage(driver);
+        String actualVideoName = nextVideoPlayerPage.getVideoName();
+        Assert.assertEquals("Названия видео не совпадают", nextVideoName, actualVideoName);
     }
 }

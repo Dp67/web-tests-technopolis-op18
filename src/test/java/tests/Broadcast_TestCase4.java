@@ -10,7 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TestCaseBroadcast_4 extends TestBase {
+public class Broadcast_TestCase4 extends TestBase {
 
     public static String id1;
     public static String id2;
