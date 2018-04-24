@@ -27,7 +27,7 @@ public class Download_TestCase1 extends TestBase {
        while(myVideosPage.checkVideosPresent()) {  //Цикл для удаления всех видео на аккаунте
             //  в цикле проверка на то, что на странице присутствуют видео
             videos = new MyVideosPage(driver).getVideos(); // Обновляем враппер-лист
-            videos.get(0).DeleteVideos(); //удаляем первый элемент
+            videos.get(0).deleteVideos(); //удаляем первый элемент
             myVideosPage.waitForVideo(videos.size() - 1);  //ждем, что кол-во видео стало на одно меньше
         }
 

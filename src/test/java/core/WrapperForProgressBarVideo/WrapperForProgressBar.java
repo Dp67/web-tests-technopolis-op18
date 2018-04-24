@@ -73,9 +73,11 @@ public class WrapperForProgressBar {
     public void setNameVideo() {
         type(DataForVideo.NAME.getClaim(), INPUT_NAME_VIDEO);
     }
+
     public void setNamesVideo(int n) {
         type(DataForVideo.NAME.getClaim()+n, INPUT_NAME_VIDEO);
     }
+
     public void checkErrorOfDownload() {
         Assert.assertTrue("Нет сообщения о ошибке!", element.findElement(BAR_ERROR).isDisplayed());
     }

@@ -29,9 +29,9 @@ public class Broadcast_TestCase1 extends TestBase {
         videoPage.startPreviewBroadcast();
         BroadcastPage broadcastPage = new BroadcastPage(driver);
         id1 = driver.findElement(Verification.GET_ID_1).getAttribute("data-movie-id");
-        broadcastPage.StartBroadcast();
+        broadcastPage.startBroadcast();
         Promise promise = new BroadcastPage(driver).restartBroadcast().Error();
-        broadcastPage.StopBroadcast();
+        broadcastPage.stopBroadcast();
         Assert.assertTrue("Сообщение об окончании трансляции не отображается", isElementPresent(BroadcastPage.MESSAGE_END_BROADCAST) );
         broadcastPage.closeBroadcastWindow();
         new Verification(driver).CheckBroadcastPresence();

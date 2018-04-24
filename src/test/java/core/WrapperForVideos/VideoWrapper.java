@@ -56,7 +56,7 @@ public class VideoWrapper {
 
 
     //метод удаляющий видео
-    public void DeleteVideos() {
+    public void deleteVideos() {
         moveToElement(element.findElement(DELETE_VIDEO));
         clickToElement(element.findElement(DELETE_VIDEO));
         moveToElement(driver.findElement(CONFIRM_DELETE_VIDEO));

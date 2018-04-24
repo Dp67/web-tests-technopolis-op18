@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DowloadPage extends HelperBase {
 
-    private static final By NameOfPage = By.xpath(".//div[contains(@class, 'portlet_h') and text()='Добавить видео']");
+    private static final By NAME_OF_PAGE = By.xpath(".//div[contains(@class, 'portlet_h') and text()='Добавить видео']");
     private static final By CHOOSE_MENU = By.xpath(".//div[contains(@id,'filter')]/span[contains(text(),'Загрузить')]");
     private static final By TERMS_OF_USER_AGREEMENT = By.xpath(".//*[contains(text(),'условия пользовательского')]");
     private static final By INPUT_BTN = By.xpath(".//*[contains(@name,'files')]");
@@ -27,7 +27,7 @@ public class DowloadPage extends HelperBase {
 
         (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
-                if (isElementPresent(NameOfPage)&isElementPresent(CHOOSE_MENU)&isElementPresent(TERMS_OF_USER_AGREEMENT)&isElementPresent(INPUT_BTN))
+                if (isElementPresent(NAME_OF_PAGE)&isElementPresent(CHOOSE_MENU)&isElementPresent(TERMS_OF_USER_AGREEMENT)&isElementPresent(INPUT_BTN))
                  return true;
                 else throw new IllegalArgumentException("From DowloadPage - Page elements not found!");
             }
@@ -39,7 +39,7 @@ public class DowloadPage extends HelperBase {
        return new MyVideosPage(driver);
     }
 
-    public DowloadPageFromSites ClickToDowloadingFromSites(){
+    public DowloadPageFromSites clickToDowloadingFromSites(){
         click(TAB_LOAD_BY_SITES);
         return new DowloadPageFromSites(driver);
     }

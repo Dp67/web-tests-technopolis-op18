@@ -24,9 +24,9 @@ public class Broadcast_TestCase2 extends TestBase{
         videoPage.settingBroadcast();
         videoPage.startPreviewBroadcast();
         BroadcastPage broadcastPage = new BroadcastPage(driver);
-        broadcastPage.StartBroadcast();
+        broadcastPage.startBroadcast();
         Promise promise = new BroadcastPage(driver).restartBroadcast().Error();
-        broadcastPage.StopBroadcast();
+        broadcastPage.stopBroadcast();
         broadcastPage.closeBroadcastWindow();
         new Verification(driver).CheckBroadcastPresence();
         new MainPage(driver).QuitMT();
@@ -39,7 +39,7 @@ public class Broadcast_TestCase2 extends TestBase{
         VideoPage videoPage = new VideoPage(driver);
         videoPage.clickButtonMyVideo();
         Assert.assertTrue("Не открывается сабпанель видео", isElementPresent(VideoPage.SUBPANEL_VIDEO));
-        videoPage.ButtonMyLives();
+        videoPage.buttonMyLives();
         Assert.assertTrue("Не открылось окно трансляций", isElementPresent(VideoPage.BROADCAST_LAYER));
         videoPage.editBroadcast();
         Assert.assertTrue("Не появляется меню редактирования", isElementPresent(VideoPage.MENU_SETTING_BROADCAST));

@@ -27,7 +27,7 @@ public class Download_TestCase4 extends TestBase {
         List<VideoWrapper> videos;
         while(myVideosPage.checkVideosPresent()) {
             videos = new MyVideosPage(driver).getVideos();
-            videos.get(0).DeleteVideos();
+            videos.get(0).deleteVideos();
             myVideosPage.waitForVideo(videos.size() - 1);
         }
 

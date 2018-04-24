@@ -24,7 +24,7 @@ public class Download_TestCase2 extends TestBase {
         List<VideoWrapper> videos;
         while(myVideosPage.checkVideosPresent()) {
             videos = new MyVideosPage(driver).getVideos();
-            videos.get(0).DeleteVideos();
+            videos.get(0).deleteVideos();
             myVideosPage.waitForVideo(videos.size() - 1);
         }
     }
@@ -33,7 +33,7 @@ public class Download_TestCase2 extends TestBase {
     public void testDownloadVideoFromYoutube() throws Exception {
 
         DowloadPage dowloadPage = new VideoPage(driver).clickDowloadVideoButton();
-        DowloadPageFromSites dowloadPageFromSites = dowloadPage.ClickToDowloadingFromSites();
+        DowloadPageFromSites dowloadPageFromSites = dowloadPage.clickToDowloadingFromSites();
         dowloadPageFromSites.putVideoFromSite(DataForVideoFromYoutube.URL.getClaim());
         dowloadPageFromSites.clickBtnAddVideo();
         MyVideosPage myVideosPage = new MyVideosPage(driver);

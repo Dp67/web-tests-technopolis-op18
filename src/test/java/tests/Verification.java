@@ -60,7 +60,7 @@ public class Verification extends HelperBase {
             public Boolean apply(WebDriver webDriver) {
                 driver.navigate().refresh();
                 videoPage.clickButtonMyVideo();
-                videoPage.ButtonMyLives();
+                videoPage.buttonMyLives();
                 Assert.assertTrue("Не отображается инвизибл",
                         explicitWait(ExpectedConditions.invisibilityOfElementLocated(MAIN_VIDEO_PAGE), 10, 500));
                 Assert.assertTrue("Не отображается виджет созданной трансляции", isElementPresent(BROADCAST_VIDGET));
