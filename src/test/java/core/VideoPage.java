@@ -75,7 +75,7 @@ public class VideoPage extends Toolbar {
 
     //Нажатие на кнопку "Загрузить" на верхней панели раздела Видео (вызывает форму загрузки видео)
     public DowloadPage clickDowloadVideoButton() {
-        //Assert
+        Assert.assertTrue("Кнопка Загрузить отсутствует", isElementPresent(DOWLOAD_VIDEOS));
         click(DOWLOAD_VIDEOS);
         return new DowloadPage(driver);
     }
@@ -108,7 +108,6 @@ public class VideoPage extends Toolbar {
     public void settingBroadcast() {
         Assert.assertTrue("Не отображается инвизибл",
                 explicitWait(ExpectedConditions.visibilityOfElementLocated(INVIS_BROADCAST), 10, 500));
-        //Assert.assertTrue("Не отображается инвизибл", isElementPresent(INVIS_BROADCAST));
         Wrapper ExSetting = new Wrapper(element, driver);
         ExSetting.Wrapper(driver.findElements(SETTING_BROADCAST), driver);
 
