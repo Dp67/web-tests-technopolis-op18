@@ -19,6 +19,7 @@ public class VideoWrapper {
     private static final By DELETE_VIDEO = By.xpath(".//a[contains(@title,'Удалить')]");
     private static final By CONFIRM_DELETE_VIDEO = By.xpath(".//input[contains(@value,'Удалить')]");
     public static final By VIDEO_NAME = By.xpath(".//div[@class='vid-card_n']"); //почему паблик?
+    private static final By DELETE_FORM = By.xpath(".//div[@class='portlet_h']");
     private String videoName; //подумать над другой реализацией
 
     public VideoWrapper(WebElement element, WebDriver driver) {
@@ -38,29 +39,26 @@ public class VideoWrapper {
             throw new IllegalArgumentException("From WrapperForScope - Name of video not found!");
         else return true;
     }
-    public boolean checkVideoDurationDisplayed() {
-        if (!element.findElement(DURATION_VIDEO).isDisplayed())
-            throw new IllegalArgumentException("From WrapperForScope - Duration of video not found!");
-        else return true;
+    public void checkVideoDurationDisplayed() {
+        Assert.assertTrue("From WrapperForScope - Duration of video not found!", element.findElement(DURATION_VIDEO).isDisplayed());
     }
-    public boolean checkVideoViewsDisplayed() {
-        if (!element.findElement(DURATION_VIDEO).isDisplayed())
-            throw new IllegalArgumentException("From WrapperForScope - Duration of video not found!");
-        else return true;
+    public void checkVideoViewsDisplayed() {
+        Assert.assertTrue("From WrapperForScope - Views of video not found!", element.findElement(VIEWS_VIDEO).isDisplayed());
     }
-    public boolean checkVideoNameDisplayed() {
-        if (!element.findElement(DURATION_VIDEO).isDisplayed())
-            throw new IllegalArgumentException("From WrapperForScope - Duration of video not found!");
-        else return true;
+    public void checkVideoNameDisplayed() {
+        Assert.assertTrue("From WrapperForScope - Name of video not found!", element.findElement(NAME_VIDEO).isDisplayed());
     }
 
 
     //метод удаляющий видео
     public void deleteVideos() {
         moveToElement(element.findElement(DELETE_VIDEO));
+        Assert.assertTrue("Не отображается кнопка удаление при наведении!", element.findElement(DELETE_VIDEO).isDisplayed());
         clickToElement(element.findElement(DELETE_VIDEO));
+        Assert.assertTrue("Форма подтверждения удаления не появилась", element.findElement(DELETE_FORM).isDisplayed());
         moveToElement(driver.findElement(CONFIRM_DELETE_VIDEO));
         clickToElement(driver.findElement(CONFIRM_DELETE_VIDEO));
+        Assert.assertTrue("Форма удаления не исчезла, после подтверждения!", !element.findElement(DELETE_FORM).isDisplayed());
     }
     //метод наведения на элемент
     public void moveToElement(WebElement webElement) {

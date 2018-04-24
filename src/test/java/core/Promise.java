@@ -6,7 +6,7 @@ public class Promise {
 
     private final WebDriver driver;
 
-    Promise(WebDriver driver) {
+    public Promise(WebDriver driver) {
         this.driver = driver;
     }
 
