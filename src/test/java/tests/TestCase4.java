@@ -16,7 +16,8 @@ public class TestCase4 extends TestBase {
 
     @Before
     public void SetUp() throws Exception {
-        new LoginMainPage(driver).doLogin(new TestBot("QA18testbot82", "QA18testbot"));
+        init();
+        new LoginMainPage(driver).doLogin(new TestBot("QA18testbot85", "QA18testbot"));
         new MainPage(driver).clickVideoOnToolbar();
         new VideoPage(driver).clickButtonMyVideo();
         MyVideosPage myVideosPage =new MyVideosPage(driver);
@@ -35,8 +36,8 @@ public class TestCase4 extends TestBase {
     public void protectFromSameVideos() throws Exception {
 
         MyVideosPage myVideosPage = new MyVideosPage(driver);
-        myVideosPage.inputVideos("/Users/daniil/Downloads/videoplayback.webm");
-        myVideosPage.inputVideos("/Users/daniil/Downloads/videoplayback.webm");
+        myVideosPage.inputVideos(DataForVideo.PATH.getClaim());
+        myVideosPage.inputVideos(DataForVideo.PATH.getClaim());
         myVideosPage.waitForBar(2);
         List<WrapperForProgressBar> wrapperForProgressBars = new MyVideosPage(driver).getProgressBars();
         wrapperForProgressBars.get(1).checkErrorOfDownload();

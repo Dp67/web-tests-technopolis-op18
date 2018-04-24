@@ -32,7 +32,7 @@ public class DowloadPage extends HelperBase {
     }
 
     public MyVideosPage ijection() {
-       type("/Users/daniil/Downloads/videoplayback.webm",INPUT_BTN);
+       type(DataForVideo.PATH.getClaim(),INPUT_BTN);
        return new MyVideosPage(driver);
     }
 
