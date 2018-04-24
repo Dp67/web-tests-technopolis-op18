@@ -1,9 +1,9 @@
 package core;
 
 public enum DataForVideo {
-    PATH("/Users/daniil/Downloads/videoplayback.webm"),
+    PATH("C:\\Users\\Eugene\\Desktop\\videoplayback.webm"),
     NAME("VideoTest"),
-    DURATION("05:33"),
+    DURATION("01:06"),
     DESCRIPTION(""),
     VIEWS("0"),
     TAGS(""),
